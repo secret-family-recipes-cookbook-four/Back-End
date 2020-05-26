@@ -8,13 +8,13 @@ module.exports = (req, res, next) => {
   if(token) {
     jwt.verify(token, jwtSecret, (err, decodedToken) => {
       if(err) {
-        res.status(401).json({ message: "sorry, no access" })
+        res.status(401).json({ message: "no access" })
       } else {
         req.user = decodedToken.user;
         next();
       }
     })
   } else {
-    res.status(401).json({ you: 'is it this message?' });
+    res.status(401).json({ message: 'stuck here' });
   }
 };

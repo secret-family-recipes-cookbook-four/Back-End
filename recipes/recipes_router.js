@@ -5,8 +5,10 @@ const db = require('../recipes/recipes_model')
 const Users = require('../users/user-model')
 const Recipes = require('./recipes_model');
 
+
+//get all
 router.get('/', (req, res) => {
-    Recipes.allRecipes()
+    Recipes.getAllRecipes()
         .then(recipes => {
             res.status(200).json(recipes);
         })
@@ -16,6 +18,7 @@ router.get('/', (req, res) => {
         })
 });
 
+//new recipe for a user
 router.post('/:id/user', validate, (req, res) => {
     const id = req.params.id;
     req.body.user_id = id;
@@ -27,11 +30,11 @@ router.post('/:id/user', validate, (req, res) => {
     })
             .catch(err => {
                 console.log(err);
-                res.status(500).json({ error: 'There was an error while saving to the database' });
+                res.status(500).json({ error: 'There was an error herrr' });
     });
 });
 
-
+//recipe by id
 router.get("/:id", validateRecipeId, (req, res) => {
     const recipeID = req.params.id;
   
@@ -47,11 +50,11 @@ router.get("/:id", validateRecipeId, (req, res) => {
       })
       .catch(err => {
         console.log(err);
-        res.status(500).json({ error: 'The recipe information could not be retrieved' });
+        res.status(500).json({ error: 'recipe by id no worky' });
       });
   });
 
-
+//re4cipe for spceifc user
   router.get('/:id/user', validateUserId, (req, res) => {
     const id = req.params.id; 
 
@@ -64,7 +67,7 @@ router.get("/:id", validateRecipeId, (req, res) => {
     })
 });
 
-
+//update
 router.put('/:id', validateRecipeId, (req, res) => {
     const id = req.params.id;
     const recipeData = req.body;
@@ -79,7 +82,7 @@ router.put('/:id', validateRecipeId, (req, res) => {
     })
 });
 
-
+//delete
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
 
@@ -127,7 +130,7 @@ function validateRecipeId(req, res, next) {
 
   function validateUserId(req, res, next) {
     const id = req.params.id;
-      Users.getUsersById(id) 
+      Users.usersById(id) 
       .then(user => {
           if (user) {
               req.user = user;
