@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../recipes/recipes_model')
 
 const Users = require('../users/user-model')
-const Recipes = require('./recipe-model.js');
+const Recipes = require('./recipes_model');
 
 router.get('/', (req, res) => {
     Recipes.allRecipes()

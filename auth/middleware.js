@@ -1,21 +1,20 @@
 const jwt = require('jsonwebtoken');
- const secrets = require('../secret');
+const { jwtSecret } = require('./secret');
 
- module.exports = (req, res, next) => {
+
+module.exports = (req, res, next) => {
   const token = req.headers.authorization;
-  const secret = secrets.jwtSecret;
-  if(token){
-  jwt.verify(token, secret, (error,decodedToken) =>{
-      if (error) {
-        res.status(401).json({message: 'you shall not pass'});
-      } else{
-        req.decodedToken = decodedToken;
+
+  if(token) {
+    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+      if(err) {
+        res.status(401).json({ message: "sorry, no access" })
+      } else {
+        req.user = decodedToken.user;
         next();
       }
-    });
+    })
   } else {
-    res.status(400).json({message: 'please provide creds.'})
-  } 
- 
- 
-  }; 
+    res.status(401).json({ you: 'is it this message?' });
+  }
+};
