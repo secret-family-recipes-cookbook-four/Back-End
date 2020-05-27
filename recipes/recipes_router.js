@@ -54,18 +54,18 @@ router.get("/:id", validateRecipeId, (req, res) => {
       });
   });
 
-//re4cipe for spceifc user
-  router.get('/:id/user', validateUserId, (req, res) => {
-    const id = req.params.id; 
+   //re4cipe for spceifc user
+   router.get('/:id/user', validateUserId, (req, res) => {
+     const id = req.params.id; 
 
-    Users.usersRecipes(id)
-    .then(recipes => {
-        res.status(200).json(recipes);
-    })
-    .catch(err => {
-        res.status(500).json({ errMessage: 'Failed to get recipes' });
-    })
-});
+      Users.usersRecipes(id)
+     .then(recipes => {
+          res.status(200).json(recipes);
+      })
+      .catch(err => {
+          res.status(500).json({ errMessage: 'Failed to get recipes' });
+      })
+  });
 
 //update
 router.put('/:id', validateRecipeId, (req, res) => {
