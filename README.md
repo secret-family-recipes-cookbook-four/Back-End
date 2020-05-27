@@ -2,7 +2,7 @@
 
 documentaion
 
-deployed base url
+deployed base url- https://secretfamilyrecipes-backend.herokuapp.com/
 
 
 register
