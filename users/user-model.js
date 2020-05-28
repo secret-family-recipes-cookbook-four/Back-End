@@ -32,7 +32,7 @@ function usersById(id) {
 
 function usersRecipes(id) {
     return db('recipes as r')
-    .select('r.id','r.title', 'r.cooks_name', 'r.ingredients', 'r.directions', 'r.category')
+    .select('r.id','r.title', 'r.cooks_name', 'r.ingredients', 'r.instructions', 'r.category')
     .where('r.user_id', id)
-    .orderBy('r.user_id', id);
+    // .orderBy('r.user_id', id);
 }
