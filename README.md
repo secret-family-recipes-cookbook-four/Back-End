@@ -58,7 +58,7 @@ Recipe by id of user
 GET
 endpoint- /api/recipes/:id/user
 needs authorization
-(NOT WORKING RIGHT NOW)
+
 
 
 Update Recipe

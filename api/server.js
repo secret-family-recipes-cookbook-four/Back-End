@@ -21,4 +21,4 @@ server.get('/', (req, res) => {
   server.use('/api/auth', authRouter);
   server.use('/api/recipes', authenticate, recipeRouter);
 
-  module.exports = server; 
+  module.exports = server;  
