@@ -16,7 +16,7 @@ router.post('/register', (req, res) => {
            res.status(201).json(saved);
   
        }).catch(err =>{
-           res.status(500).json({message: 'an error has occurred'})
+           res.status(500).json({message: err.message})
        })
   });
   
@@ -27,12 +27,12 @@ router.post('/register', (req, res) => {
        Users.find({username}).then(([user]) => {
            if(user && bcryptjs.compareSync(password, user.password)){
                const token = genToken(user);
-               res.status(200).json({message: 'log in successful', token})
+               res.status(200).json({message: 'log in successful', token, id: user.id})
            } else {
                res.status(401).json({message: 'access denied'})
            }
        }).catch(err =>{
-           res.status(500).json({message: 'an error has occurred'})
+           res.status(500).json({message: 'an error has occurred',message: err.message})
        })
   });
   
