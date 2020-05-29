@@ -27,7 +27,7 @@ router.post('/register', (req, res) => {
        Users.find({username}).then(([user]) => {
            if(user && bcryptjs.compareSync(password, user.password)){
                const token = genToken(user);
-               res.status(200).json({message: 'log in successful', token})
+               res.status(200).json({message: 'log in successful', token, id: user.id})
            } else {
                res.status(401).json({message: 'access denied'})
            }
