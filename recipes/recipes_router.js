@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ errMessage: 'couldnt get recipes' })
+            res.status(500).json({ errMessage: 'couldnt get recipes', message: err.message })
         })
 });
 
@@ -30,7 +30,7 @@ router.post('/:id/user', validate, (req, res) => {
     })
             .catch(err => {
                 console.log(err);
-                res.status(500).json({ error: 'There was an error herrr' });
+                res.status(500).json({ error: 'There was an error herrr', message: err.message });
     });
 });
 
@@ -50,7 +50,7 @@ router.get("/:id", validateRecipeId, (req, res) => {
       })
       .catch(err => {
         console.log(err);
-        res.status(500).json({ error: 'recipe by id no worky' });
+        res.status(500).json({ error: 'recipe by id no worky', message: err.message });
       });
   });
 
@@ -79,7 +79,7 @@ router.put('/:id', validateRecipeId, (req, res) => {
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json({ error: 'The recipe could not be modified' });
+        res.status(500).json({ error: 'The recipe could not be modified', message: err.message });
     })
 });
 
@@ -92,7 +92,7 @@ router.delete('/:id', (req, res) => {
         if (deleted) {
             res.status(200).json({deleted});
         } else {
-            res.status(404).json({ error: 'Failed to delete' });
+            res.status(404).json({ error: 'Failed to delete', message: err.message });
         }
     })
 })

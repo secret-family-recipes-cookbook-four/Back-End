@@ -16,7 +16,7 @@ router.post('/register', (req, res) => {
            res.status(201).json(saved);
   
        }).catch(err =>{
-           res.status(500).json({message: 'an error has occurred'})
+           res.status(500).json({message: err.message})
        })
   });
   
@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
                res.status(401).json({message: 'access denied'})
            }
        }).catch(err =>{
-           res.status(500).json({message: 'an error has occurred'})
+           res.status(500).json({message: 'an error has occurred',message: err.message})
        })
   });
   
